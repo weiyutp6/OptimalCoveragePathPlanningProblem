@@ -32,7 +32,7 @@ plot
 # change mode = 0
 python OCPPP.py
 ```
-##Ref:
+## Reference:
 
 @INPROCEEDINGS{7743548,
   author={Bochkarev, Stanislav and Smith, Stephen L.},
