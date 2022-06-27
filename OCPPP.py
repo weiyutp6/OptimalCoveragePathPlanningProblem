@@ -67,7 +67,6 @@ class Grid:
                     counter += 1
                     self.naiH.append(naiH_row)
                     self.naiV.append(naiV_row)
-                    print(naiH_row)
 
     # export matrix as matlab .mat file
     def exportArrays(self):
