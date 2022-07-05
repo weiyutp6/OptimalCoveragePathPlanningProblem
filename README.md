@@ -20,11 +20,19 @@ run
 ```bash
 # go to the bottom of OCPPP.py
 # change desired start, end and unpassable areas
-# change mode = 1
+# change mode = 0
 python OCPPP.py
 # go to Matlab command line and the main repository directory
 OCPPP
-# the following xh.csv would be the results
+# the following xh.csv would be the results of line segmentation of the workspace
+# go back to OCPPP.py and change mode = 1
+python OCPPP.py
+# creates the transition segments and relative cost for GTSP and plots the line segments to segment.png
+# go to Matlab again
+GTSP
+# the following GTSP_result.csv would be the results of GTSP w.r.t the line segments and transition segments
+# to plot the results go back to OCPPP.py again and change mode = 2
+python OCPPP.py
 ``` 
 plot
 ```bash
