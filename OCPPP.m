@@ -13,6 +13,11 @@ yh = optimvar('yh',a(1),'Type','integer','LowerBound',0,'UpperBound',1);
 yv = optimvar('yv',a(1),'Type','integer','LowerBound',0,'UpperBound',1);
 
 % LP formulation
+% min   1'*yh + 1'*yv
+% s.t.  Ah*xh <= yh,
+%       Av*xv <= yv,
+%       xh + xv = 1,
+%       xh, xv \in {0,1}^n
 obj = h(xh,xv,yh,yv);
 prob = optimproblem('Objective', obj);
 ineq_xh = Ah*xh<=yh;
