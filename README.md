@@ -46,8 +46,11 @@ the other files are the results using
 unpassable = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
 ```
 ![](segment.png)
+
 Fig.1 result of workspace segmentation(red lines) and transition segments(yellow lines)
+
 ![](GTSP.png)
+
 Fig.2 result of GTSP
 
 ## Reference:
