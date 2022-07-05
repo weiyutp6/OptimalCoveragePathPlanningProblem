@@ -40,6 +40,14 @@ plot
 # change mode = 0
 python OCPPP.py
 ```
+## test
+the other files are the results using
+```bash
+unpassable = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
+```
+![result of workspace segmentation(red lines) and transition segments(yellow lines)](https://github.com/weiyutp6/OptimalCoveragePathPlanningProblem/edit/main/segment.png?raw=true)
+![result of GTSP](https://github.com/weiyutp6/OptimalCoveragePathPlanningProblem/edit/main/GTSP.png?raw=true)
+
 ## Reference:
 
 @INPROCEEDINGS{7743548,
@@ -51,6 +59,7 @@ python OCPPP.py
   number={},
   pages={1237-1242},
   doi={10.1109/COASE.2016.7743548}}
+  
 @misc{https://doi.org/10.48550/arxiv.2109.08185,
   doi = {10.48550/ARXIV.2109.08185},
   url = {https://arxiv.org/abs/2109.08185},
