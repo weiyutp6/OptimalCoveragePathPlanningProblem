@@ -1,17 +1,18 @@
 # OptimalCoveragePathPlanningProblem
 
-## Prerequisites
+## Prerequisites(tested and run on the specific versions)
 
 ### Python
 
+python 3.10
+
 ```bash
-pip install numpy
-pip install matplotlib
-pip install scipy
-pip install pandas
+pip3 install -r requirements.txt
 ```
 
 ### Matlab
+
+R2021a
 
 Optimization Toolbox(https://www.mathworks.com/help/optim/)
 
