@@ -137,5 +137,3 @@ Fig.1 result of workspace segmentation(red lines) and transition segments(yellow
 Fig.2 result of GTSP
 
 ## Reference:
-bibliography: bibliography.bib
----
