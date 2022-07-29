@@ -1,0 +1,24 @@
+NAME : OCPPP.gtsp.16.tour
+COMMENT : Length = 16
+COMMENT : Found by GLKH [Keld Helsgaun] Thu Jul 14 22:19:12 2022
+TYPE : TOUR
+DIMENSION : 16
+TOUR_SECTION
+2
+6
+25
+15
+29
+21
+24
+32
+4
+8
+13
+18
+19
+10
+11
+28
+-1 
+EOF

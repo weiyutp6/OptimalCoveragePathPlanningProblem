@@ -1,0 +1,39 @@
+NAME : OCPPP1.gtsp.70017.tour
+COMMENT : Length = 70017
+COMMENT : Found by GLKH [Keld Helsgaun] Mon Jul 25 11:19:46 2022
+TYPE : TOUR
+DIMENSION : 31
+TOUR_SECTION
+1
+54
+14
+15
+18
+19
+56
+12
+9
+60
+6
+7
+31
+36
+39
+44
+47
+46
+34
+37
+52
+42
+49
+62
+28
+29
+26
+23
+58
+22
+4
+-1
+EOF
