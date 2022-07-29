@@ -123,7 +123,7 @@ line_segment.mat
 Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
 Then you can find the resulting trajectory when you match the results together.
 
-## test
+## test result
 the other files are the results using
 ```bash
 unpassable = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
