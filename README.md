@@ -95,11 +95,17 @@ edge_weight_section.txt
 set_section.txt
 ```
 These files would be used to create the .gtsp file for GLKH. a template .gtsp used is OCPPP3.gtsp.
+
 Open .gtsp file with text editor
+
 Change the tags accordingly. The important ones are replace content under EDGE_WEIGHT_SECTION tag with the contents from edge_weight_section.txt and replace GTSP_SET_SECTION tag contents with content from set_section.txt.
+
 Then change the DIMENSION and GTSP_SETS to match that of GTSP_SET_SECTION.
-Don't forget to change the NAME tag to the filename of the .gtsp file
+
+Don't forget to change the NAME tag to the filename of the .gtsp file.
+
 (I know this is very annoying and I promise I will include code to do this automatically on the next update QwQ)
+
 After the .gtsp file is saved run GLKH
 ```bash
 ./$(workspace_dir)/GLKH-1.1/runSmall $(workspace_dir)/(filename without .gtsp at the end)
