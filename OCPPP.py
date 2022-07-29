@@ -36,15 +36,49 @@ def manhattan(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
 
 
+# a b are lists which contains start and end coordinates of a line
+def neighborLine(a, b):
+    return neighbors(a[1], b[0])
+
+
+def neighbors(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
+
+
+def dot(a, b):
+    return a[0] * b[0] + a[1] * b[1]
+
+
+def minus(a, b):
+    return [a[0] - b[0], a[1] - b[1]]
+
+
+def distParallelLine(a, b):
+    if a[0][0] == a[1][0]:
+        return abs(b[0][0] - a[0][0])
+    elif a[0][1] == a[1][1]:
+        return abs(b[0][1] - a[0][1])
+
+
 # right first then down
 class Grid:
-    def __init__(self, start, end, unpassable):
+    def __init__(self, start=[], end=[], unpassable=[], csv_file=None, threshold=0):
+        self.csv_file = csv_file
         self.start = start
         self.end = end
         self.unpassable = unpassable
+        if csv_file is not None:
+            with open(self.csv_file) as input:
+                reader = list(csv.reader(input))
+                self.start = [0, 0]
+                self.end = [len(reader) - 1, len(reader[0]) - 1]
+                for i in range(len(reader)):
+                    for j in range(len(reader[i])):
+                        if float(reader[i][j]) <= threshold:
+                            unpassable.append([i, j])
         self.gtsp_set = None
         self.squares = []
-        self.grid_num = (end[1] - start[1] + 1) * (end[0] - start[0] + 1) - len(unpassable)
+        self.grid_num = (self.end[1] - self.start[1] + 1) * (self.end[0] - self.start[0] + 1) - len(unpassable)
         self.naiH = []
         self.naiV = []
         self.resulting_grid = []
@@ -55,8 +89,8 @@ class Grid:
     # generate NAI matrix for horizontal and vertical graph
     def findNAI(self):
         counter = 0
-        for i in range(start[0], end[0] + 1):
-            for j in range(start[1], end[1] + 1):
+        for i in range(self.start[0], self.end[0] + 1):
+            for j in range(self.start[1], self.end[1] + 1):
                 if [i, j] not in self.unpassable:
                     point = Square([i, j], self.end, self.unpassable, counter)
                     self.squares.append(point)
@@ -85,7 +119,9 @@ class Grid:
     def exportNAI(self):
         nai = dict()
         nai['NAIH'] = np.array(self.naiH)
+        # print(nai['NAIH'].shape)
         nai['NAIV'] = np.array(self.naiV)
+        # print(nai['NAIV'].shape)
         savemat('NAI.mat', nai)
 
     def readCsv(self, file):
@@ -117,6 +153,7 @@ class Grid:
         for i in connection:
             plt.plot(i[1], i[0], color='r')
             plt.scatter(i[1], i[0], color='b')
+        plt.savefig('lines.png')
         transition = []
         for i in self.transition_segements:
             for j in range(len(i) - 1):
@@ -133,40 +170,39 @@ class Grid:
         vertical_lines = []
         for i in range(self.start[0], self.end[0] + 1):
             row = []
+            # print(self.resulting_grid[i])
             for j in range(self.start[1], self.end[1] + 1):
-                if not self.resulting_grid[i][j]:
-                    if [i, j + 1] not in self.unpassable and j + 1 <= self.end[1]:
-                        if not self.resulting_grid[i][j + 1]:
-                            if [i, j] not in row:
-                                row.append([i, j])
-                            row.append([i, j + 1])
-                        else:
+                if j + 1 <= self.end[1]:
+                    if self.resulting_grid[i][j] == 0:
+                        row.append([i, j])
+                        if self.resulting_grid[i][j + 1] == 1 or self.resulting_grid[i][j + 1] == -1:
+                        #     horizontal_lines.append(row)
+                        #     # print(row)
+                        #     row = []
+                        # elif self.resulting_grid[i][j + 1] == -1:
                             if row:
                                 horizontal_lines.append(row)
                                 # print(row)
                             row = []
-                    elif [i, j] == end:
-                        # print(row)
-                        horizontal_lines.append(row)
+            if row:
+                horizontal_lines.append(row)
+                # print(row)
         for j in range(self.start[1], self.end[1] + 1):
             column = []
             for i in range(self.start[0], self.end[0] + 1):
-                if self.resulting_grid[i][j]:
-                    if [i + 1, j] not in self.unpassable and i + 1 <= self.end[0]:
-                        if self.resulting_grid[i + 1][j]:
-                            if [i, j] not in column:
-                                column.append([i, j])
-                            column.append([i + 1, j])
-                        else:
-                            if column or [i, j] == self.end:
+                if i + 1 <= self.end[0]:
+                    if self.resulting_grid[i][j] == 1:
+                        column.append([i, j])
+                        if self.resulting_grid[i + 1][j] == -1 or self.resulting_grid[i + 1][j] == 0:
+                            if column:
                                 vertical_lines.append(column)
                                 # print(column)
                             column = []
-                    elif [i, j] == end:
-                        # print(column)
-                        vertical_lines.append(column)
+            if column:
+                vertical_lines.append(column)
+                # print(column)
         self.gtsp_set = horizontal_lines + vertical_lines
-        print(len(self.gtsp_set))
+        # print(len(self.gtsp_set))
 
     # lines are indexed 0 to n-1
     def possibleTransitions(self):
@@ -208,13 +244,12 @@ class Grid:
             if i not in self.transition_segements:
                 # print(i)
                 self.transition_segements.append(i)
-        print(len(self.transition_segements))
+        # print(len(self.transition_segements))
 
     def plotGTSP(self):
         f = open('GTSP_result.csv')
         mat = csv.reader(f)
         gtsp_result = []
-
         for i in mat:
             row = []
             for j in i:
@@ -235,32 +270,82 @@ class Grid:
             plt.scatter(i[1], i[0], color='b')
         plt.savefig('GTSP.png')
 
-    def createGTSPSet(self):
+    def createGTSPSet(self, print_seq = 0):
         gtsp = []
+        output = dict()
+        counter = 0
         for i in self.gtsp_set:
             gtsp.append([i[0], i[-1]])
             gtsp.append([i[-1], i[0]])
-        for i in self.transition_segements:
-            gtsp.append(i)
-            gtsp.append([i[-1], i[0]])
+            if len(i) == 1:
+                gtsp.append([i[0], i[0]])
+                gtsp.append([i[0], i[0]])
+                # print(i)
+            counter += 1
+            output[str(counter)] = gtsp[-1]
+            counter += 1
+            output[str(counter)] = gtsp[-2]
+            # print(gtsp[-1])
+            # print(gtsp[-2])
+            # print(output)
+        savemat('line_segment.mat', output)
+        if print_seq:
+            with open('GLKH-1.1/OCPPP3.69999.tour') as f:
+                lines = f.readlines()
+                activation = 0
+                seq = []
+                for i in lines:
+                    if activation:
+                        if i != "EOF\n":
+                            seq.append(int(i))
+                    if i == "TOUR_SECTION\n":
+                        activation = 1
+                        # print(len(i))
+                seq.pop(-1)
+                for i in seq:
+                    print(gtsp[i - 1])
+        edge_weight_section = []
+        for i in gtsp:
+            row = []
+            for j in gtsp:
+                if neighborLine(i, j):
+                    row.append(1)
+                else:
+                    row.append(9999)
+                # row.append((distParallelLine(i, j) * 20)**2)
+                # if not dot(minus(i[1], i[0]), minus(j[1], j[0])):
+                #     row.append(20)
+                # else:
+                #     row.append((self.end[0] - self.start[0] + 1 - distParallelLine(i, j)) * 20)
+            edge_weight_section.append(row)
+        mat = np.matrix(edge_weight_section)
+        np.savetxt('edge_weight_section.txt', mat, fmt='%d')
+        set_section = []
+        for i in range(1, int(len(edge_weight_section) / 2) + 1):
+            row = [i, 2 * i - 1, 2 * i, -1]
+            set_section.append(row)
+            # print(set_section)
+        mat = np.matrix(set_section)
+        np.savetxt('set_section.txt', mat, fmt='%d')
+        # for i in self.transition_segements:
+        #     gtsp.append(i)
+        #     gtsp.append([i[-1], i[0]])
 
     def findTSPCost(self):
         all_straight_connections = []
         not_connected_cost = 10000
         straight_connection_cost = 1
         transition_connection_cost = 100
-        numbered = []
         for i in self.gtsp_set:
-            number_row = []
             for j in range(len(i) - 1):
                 all_straight_connections.append([i[j], i[j + 1]])
                 # print(all_straight_connections[-1])
-        for i in range(start[0], end[0] + 1):
-            for j in range(start[1], end[1] + 1):
+        for i in range(self.start[0], self.end[0] + 1):
+            for j in range(self.start[1], self.end[1] + 1):
                 row = []
                 if [i, j] not in self.unpassable:
-                    for k in range(start[0], end[0] + 1):
-                        for l in range(start[1], end[1] + 1):
+                    for k in range(self.start[0], self.end[0] + 1):
+                        for l in range(self.start[1], self.end[1] + 1):
                             if [k, l] not in self.unpassable:
                                 if [[i, j], [k, l]] in all_straight_connections:
                                     row.append(straight_connection_cost)
@@ -321,12 +406,16 @@ class Square:
             self.right = [self.coord[0], self.coord[1] + 1]
 
 
-start = [0, 0]
-end = [9, 9]
-unpassable = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
+start10 = [0, 0]
+end10 = [9, 9]
+unpassable10 = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
 # unpassable = [[5, 7], [5, 8], [6, 7], [6, 8]]
-mode = 2
-g = Grid(start, end, unpassable)
+csv_file = "20220725DredgerMap_Gaussain_1_kernal10.csv"
+mode = 1
+activate_tsp = 1
+print_seq = 1
+# g = Grid(start = start10, end = end10, unpassable = unpassable10, threshold = 0)
+g = Grid(csv_file=csv_file, threshold=0)
 g.findNAI()
 if not mode:
     g.exportNAI()
@@ -334,9 +423,11 @@ elif mode == 1:
     g.readCsv('xh.csv')
     g.parseLines()
     g.possibleTransitions()
-    g.findTSPCost()
-    g.exportTSPCost()
     g.createMovementMatrix()
+    if activate_tsp:
+        g.findTSPCost()
+        g.exportTSPCost()
+        g.createGTSPSet(print_seq=print_seq)
     g.plotCsv()
 elif mode == 2:
     g.plotGTSP()
