@@ -106,9 +106,11 @@ Don't forget to change the NAME tag to the filename of the .gtsp file.
 
 (I know this is very annoying and I promise I will include code to do this automatically on the next update QwQ)
 
-After the .gtsp file is saved run GLKH
+After the .gtsp file is saved copy to GLKH-1.1/GTSPLIB run GLKH
 ```bash
-./$(workspace_dir)/GLKH-1.1/runSmall $(workspace_dir)/(filename without .gtsp at the end)
+cp (filename).gtsp GLKH-1.1/GTSPLIB
+cd GLKH-1.1
+./runSmall (filename without .gtsp at the end)
 ```
 Your results should be saved in the following format
 ```bash
