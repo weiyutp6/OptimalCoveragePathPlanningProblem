@@ -176,10 +176,10 @@ class Grid:
                     if self.resulting_grid[i][j] == 0:
                         row.append([i, j])
                         if self.resulting_grid[i][j + 1] == 1 or self.resulting_grid[i][j + 1] == -1:
-                        #     horizontal_lines.append(row)
-                        #     # print(row)
-                        #     row = []
-                        # elif self.resulting_grid[i][j + 1] == -1:
+                            #     horizontal_lines.append(row)
+                            #     # print(row)
+                            #     row = []
+                            # elif self.resulting_grid[i][j + 1] == -1:
                             if row:
                                 horizontal_lines.append(row)
                                 # print(row)
@@ -270,7 +270,7 @@ class Grid:
             plt.scatter(i[1], i[0], color='b')
         plt.savefig('GTSP.png')
 
-    def createGTSPSet(self, print_seq = 0):
+    def createGTSPSet(self, print_seq=0):
         gtsp = []
         output = dict()
         counter = 0
@@ -410,12 +410,12 @@ start10 = [0, 0]
 end10 = [9, 9]
 unpassable10 = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
 # unpassable = [[5, 7], [5, 8], [6, 7], [6, 8]]
-csv_file = "20220725DredgerMap_Gaussain_1_kernal10.csv"
+csv_file = "20220728DredgerMap_Gaussain_2.csv"
 mode = 1
-activate_tsp = 1
-print_seq = 1
-# g = Grid(start = start10, end = end10, unpassable = unpassable10, threshold = 0)
-g = Grid(csv_file=csv_file, threshold=0)
+activate_tsp = 0
+print_seq = 0
+g = Grid(start=start10, end=end10, unpassable=unpassable10, threshold=0)
+# g = Grid(csv_file=csv_file, threshold=0)
 g.findNAI()
 if not mode:
     g.exportNAI()
