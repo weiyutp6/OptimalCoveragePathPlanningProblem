@@ -62,7 +62,7 @@ python OCPPP.py
 ``` 
 #### plot
 Go back to the bottom of OCPPP.py
-Change mode = 0
+Change mode = 2
 ```bash
 python OCPPP.py
 ```
