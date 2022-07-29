@@ -36,7 +36,7 @@ Which can be changed in the section
 ```bash
 g = Grid(start = start10, end = end10, unpassable = unpassable10, threshold = 0)
 g = Grid(csv_file=csv_file, threshold=0)
-```bash
+```
 Change mode = 0
 ```bash
 python OCPPP.py
