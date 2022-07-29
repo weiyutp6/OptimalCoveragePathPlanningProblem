@@ -143,8 +143,8 @@ output:
 bibliography: bibliography.bib
 ---
 
-[@Bochkarev2016]
+@Bochkarev2016
 
-[@Ramesh2021]
+@Ramesh2021
 
-[@Helsgaun2015]
+@Helsgaun2015
