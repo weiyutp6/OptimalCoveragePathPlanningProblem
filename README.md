@@ -19,8 +19,12 @@ Optimization Toolbox(https://www.mathworks.com/help/optim/)
 
 gcc 11.3.0
 
+**Disclaimer**
+
+All code from folder GLKH-1.1 is not original. Everything is based on http://webhotel4.ruc.dk/~keld/research/GLKH/ with only changes being compatibility changes in the original code to run on the current setup. If you want to use the original GLKH follow the download instructions on the website and replace GLKKH-1.1 with the compiled folder.
+
 **Note**
-If you are running this on windows mingw compiler doesn't work. GLKH is ported to this version of gcc with cygwin 3.3.5 and is primarily tested and run on this version.
+If you are running this on Windows OS mingw compiler is tested and doesn't work. GLKH is ported to this version of gcc with cygwin 3.3.5 and is primarily tested and run on this version.
 
 ## Code workings
 
