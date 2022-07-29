@@ -21,7 +21,7 @@ gcc 11.3.0
 
 **Disclaimer**:
 
-All code from folder GLKH-1.1 is not original. Everything is based on http://webhotel4.ruc.dk/~keld/research/GLKH/ with only changes being compatibility changes in the original code to run on the current setup. If you want to use the original GLKH follow the download instructions on the website and replace GLKKH-1.1 with the compiled folder.
+All code from folder GLKH-1.1 is not original. Everything is based on http://webhotel4.ruc.dk/~keld/research/GLKH/ with only changes being compatibility changes in the original code to run on the current setup. If you want to use the original GLKH follow the download instructions on the website and replace GLKH-1.1 with the compiled folder.
 
 **Note**:
 
