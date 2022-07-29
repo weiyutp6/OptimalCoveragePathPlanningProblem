@@ -24,44 +24,92 @@ If you are running this on windows mingw compiler doesn't work. GLKH is ported t
 
 ## Code workings
 
-run unfinished version
+### Run unfinished GTSP version
 
+Go to the bottom of OCPPP.py
+Change desired start, end and unpassable areas or read a .csv file which is a heat map
+Which can be changed in the section
 ```bash
-# go to the bottom of OCPPP.py
-# change desired start, end and unpassable areas
-# change mode = 0
+g = Grid(start = start10, end = end10, unpassable = unpassable10, threshold = 0)
+g = Grid(csv_file=csv_file, threshold=0)
+```bash
+Change mode = 0
+```bash
 python OCPPP.py
-# go to Matlab command line and the main repository directory
+```
+Go to Matlab command line and the main repository directory
+```bash
 OCPPP
-# the following xh.csv would be the results of line segmentation of the workspace
-# go back to OCPPP.py and change mode = 1
+```
+The following xh.csv would be the results of line segmentation of the workspace
+Go back to OCPPP.py and change mode = 1, activate_tsp = 0
+```bash
 python OCPPP.py
-# creates the transition segments and relative cost for GTSP and plots the line segments to segment.png
-# go to Matlab again
+```
+Creates the transition segments and relative cost for GTSP and plots the line segments to segment.png
+Go to Matlab again
+```bash
 GTSP
-# the following GTSP_result.csv would be the results of GTSP w.r.t the line segments and transition segments
-# to plot the results go back to OCPPP.py again and change mode = 2
+```
+The following GTSP_result.csv would be the results of GTSP w.r.t the line segments and transition segments
+To plot the results go back to OCPPP.py again and change mode = 2
+```bash
 python OCPPP.py
 ``` 
-plot
+#### plot
+Go back to the bottom of OCPPP.py
+Change mode = 0
 ```bash
-# go back to the bottom of OCPPP.py
-# change mode = 0
 python OCPPP.py
 ```
 
-run with Ramesh et al. configurations
+### Run with Ramesh et al. configurations
 
+Go to the bottom of OCPPP.py
+Change desired start, end and unpassable areas or read a .csv file which is a heat map.
+Edit the section bellow accordingly at the bottom of OCPPP.py
 ```bash
-# go to the bottom of OCPPP.py
-# change desired start, end and unpassable areas
-# change mode = 0
+g = Grid(start = start10, end = end10, unpassable = unpassable10, threshold = 0)
+g = Grid(csv_file=csv_file, threshold=0)
+```bash
+Change mode = 0
+```bash
 python OCPPP.py
-# go to Matlab command line and the main repository directory
+```
+Go to Matlab command line and the main repository directory
+```bash
 OCPPP
-# the following xh.csv would be the results of line segmentation of the workspace
-# go back to OCPPP.py and change mode = 1
+```
+The following xh.csv would be the results of line segmentation of the workspace
+Go back to OCPPP.py and change mode = 1, activate_tsp = 1
+```bash
 python OCPPP.py
+```
+You would get the files
+```bash
+edge_weight_section.txt
+set_section.txt
+```
+These files would be used to create the .gtsp file for GLKH. a template .gtsp used is OCPPP3.gtsp.
+Open .gtsp file with text editor
+Change the tags accordingly. The important ones are replace content under EDGE_WEIGHT_SECTION tag with the contents from edge_weight_section.txt and replace GTSP_SET_SECTION tag contents with content from set_section.txt.
+Then change the DIMENSION and GTSP_SETS to match that of GTSP_SET_SECTION.
+Don't forget to change the NAME tag to the filename of the .gtsp file
+(I know this is very annoying and I promise I will include code to do this automatically on the next update QwQ)
+After the .gtsp file is saved run GLKH
+```bash
+./$(workspace_dir)/GLKH-1.1/runSmall $(workspace_dir)/(filename without .gtsp at the end)
+```
+Your results should be saved in the following format
+```bash
+(filename).(optimal cost).tour
+```
+To compile the results the file
+```bash
+line_segment.mat
+```
+Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
+Then you can find the resulting trajectory when you match the results together.
 
 ## test
 the other files are the results using
