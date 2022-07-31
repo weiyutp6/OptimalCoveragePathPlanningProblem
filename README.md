@@ -136,7 +136,7 @@ Fig.1 result of workspace segmentation(red lines) and transition segments(yellow
 
 ![](GTSP.png)
 
-Fig.2 result of GTSP
+Fig.2 result of GTSP (unfinished version)
 
 ## Reference:
 [1] Stanislav Bochkarev and Stephen L. Smith. On minimizing turns in robot coverage path planning. 2016 IEEE International Conference on Automation Science and Engineering (CASE), pp. 1237–1242, 2016.
