@@ -112,7 +112,8 @@ After the .gtsp file is saved copy to GLKH-1.1/GTSPLIB run GLKH
 ```bash
 cp (filename).gtsp GLKH-1.1/GTSPLIB
 cd GLKH-1.1
-./runGLKH (filename without .gtsp at the end)
+# note don't add .gtsp at the end for run GLKH
+./runGLKH (filename)
 ```
 Your results should be saved in the following format
 ```bash
