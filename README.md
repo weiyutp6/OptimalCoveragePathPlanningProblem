@@ -75,8 +75,8 @@ Go to the bottom of OCPPP.py
 Change desired start, end and unpassable areas or read a .csv file which is a heat map.
 Edit the section bellow accordingly at the bottom of OCPPP.py
 ```bash
-g = Grid(start = start10, end = end10, unpassable = unpassable10, threshold = 0)
-g = Grid(csv_file=csv_file, threshold=0)
+g = Grid(start = (designated start), end = (designated end), unpassable = (position of obstacle))
+g = Grid(csv_file=csv_file, threshold=(number of oyster which is considered worthy of traversing on the coordinate))
 ```bash
 Change mode = 0
 ```bash
