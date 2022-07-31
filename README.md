@@ -39,32 +39,45 @@ Which can be changed in the section
 g = Grid(start = start10, end = end10, unpassable = unpassable10, threshold = 0)
 g = Grid(csv_file=csv_file, threshold=0)
 ```
+
 Change mode = 0
+
 ```bash
 python OCPPP.py
 ```
+
 Go to Matlab command line and the main repository directory
+
 ```bash
 OCPPP
 ```
+
 The following xh.csv would be the results of line segmentation of the workspace
 Go back to OCPPP.py and change mode = 1, activate_tsp = 0
+
 ```bash
 python OCPPP.py
 ```
+
 Creates the transition segments and relative cost for GTSP and plots the line segments to segment.png
+
 Go to Matlab again
+
 ```bash
 GTSP
 ```
 The following GTSP_result.csv would be the results of GTSP w.r.t the line segments and transition segments
+
 To plot the results go back to OCPPP.py again and change mode = 2
+
 ```bash
 python OCPPP.py
 ``` 
 #### plot
 Go back to the bottom of OCPPP.py
+
 Change mode = 2
+
 ```bash
 python OCPPP.py
 ```
@@ -72,30 +85,42 @@ python OCPPP.py
 ### Run with Ramesh et al. configurations
 
 Go to the bottom of OCPPP.py
+
 Change desired start, end and unpassable areas or read a .csv file which is a heat map.
+
 Edit the section bellow accordingly at the bottom of OCPPP.py
+
 ```bash
 g = Grid(start = (designated start), end = (designated end), unpassable = (position of obstacle))
 g = Grid(csv_file=csv_file, threshold=(number of oyster which is considered worthy of traversing on the coordinate))
-```bash
+```
+
 Change mode = 0
+
 ```bash
 python OCPPP.py
 ```
+
 Go to Matlab command line and the main repository directory
+
 ```bash
 OCPPP
 ```
+
 The following xh.csv would be the results of line segmentation of the workspace
 Go back to OCPPP.py and change mode = 1, activate_tsp = 1
+
 ```bash
 python OCPPP.py
 ```
+
 You would get the files
+
 ```bash
 edge_weight_section.txt
 set_section.txt
 ```
+
 These files would be used to create the .gtsp file for GLKH. a template .gtsp used is OCPPP3.gtsp.
 
 Open .gtsp file with text editor
@@ -109,25 +134,32 @@ Don't forget to change the NAME tag to the filename of the .gtsp file.
 (I know this is very annoying and I promise I will include code to do this automatically on the next update QwQ)
 
 After the .gtsp file is saved copy to GLKH-1.1/GTSPLIB run GLKH
+
 ```bash
 cp (filename).gtsp GLKH-1.1/GTSPLIB
 cd GLKH-1.1
 # note don't add .gtsp at the end for run GLKH
 ./runGLKH (filename)
 ```
+
 Your results should be saved in the following format
+
 ```bash
 (filename).(optimal cost).tour
 ```
+
 To compile the results the file
+
 ```bash
 line_segment.mat
 ```
+
 Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
+
 Then you can find the resulting trajectory when you match the results together.
 
 ## test result
-the other files are the results using
+these are the results using
 ```bash
 unpassable = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
 ```
