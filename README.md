@@ -139,9 +139,8 @@ Fig.1 result of workspace segmentation(red lines) and transition segments(yellow
 Fig.2 result of GTSP
 
 ## Reference:
-[1] Stanislav Bochkarev and Stephen L. Smith. On minimizing turns in robot coverage path planning. 2016 IEEE
-International Conference on Automation Science and Engineering (CASE), pp. 1237–1242, 2016.
-[2] Megnath Ramesh, Frank Imeson, Baris Fidan, and Stephen L. Smith. Optimal Partitioning of Non-Convex Environments
-for Minimum Turn Coverage Planning. 2021.
-[3] Keld Helsgaun. Solving the equality generalized traveling salesman problem using the Lin--Kernighan--Helsgaun
-Algorithm. Mathematical Programming Computation, 7, pp. 269–287, 2015.
+[1] Stanislav Bochkarev and Stephen L. Smith. On minimizing turns in robot coverage path planning. 2016 IEEE International Conference on Automation Science and Engineering (CASE), pp. 1237–1242, 2016.
+
+[2] Megnath Ramesh, Frank Imeson, Baris Fidan, and Stephen L. Smith. Optimal Partitioning of Non-Convex Environments for Minimum Turn Coverage Planning. 2021.
+
+[3] Keld Helsgaun. Solving the equality generalized traveling salesman problem using the Lin--Kernighan--Helsgaun Algorithm. Mathematical Programming Computation, 7, pp. 269–287, 2015.
