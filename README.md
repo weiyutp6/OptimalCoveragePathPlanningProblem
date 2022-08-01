@@ -1,4 +1,4 @@
-# OptimalCoveragePathPlanningProblem
+# Optimal Coverage Path Planning Problem for Marine Environments
 
 ## Prerequisites(tested and run on the specific versions)
 
