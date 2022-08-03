@@ -1,0 +1,15 @@
+NAME : OCPPP6.gtsp.1080.tour
+COMMENT : Length = 1080
+COMMENT : Found by GLKH [Keld Helsgaun] Tue Aug  2 21:10:14 2022
+TYPE : TOUR
+DIMENSION : 7
+TOUR_SECTION
+2
+5
+9
+14
+11
+8
+4
+-1
+EOF

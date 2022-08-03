@@ -76,7 +76,7 @@ class Grid:
                     for j in range(len(reader[i])):
                         if float(reader[i][j]) <= threshold:
                             unpassable.append([i, j])
-        self.gtsp_set = None
+        self.gtsp_set = []
         self.squares = []
         self.grid_num = (self.end[1] - self.start[1] + 1) * (self.end[0] - self.start[0] + 1) - len(unpassable)
         self.naiH = []
@@ -85,6 +85,8 @@ class Grid:
         self.xh = []
         self.transition_segements = []
         self.tsp_cost = []
+        self.cost = []
+        self.section = []
 
     # generate NAI matrix for horizontal and vertical graph
     def findNAI(self):
@@ -304,7 +306,7 @@ class Grid:
                 seq.pop(-1)
                 for i in seq:
                     print(gtsp[i - 1])
-        edge_weight_section = []
+        self.cost = []
         for i in gtsp:
             row = []
             for j in gtsp:
@@ -317,16 +319,11 @@ class Grid:
                 #     row.append(20)
                 # else:
                 #     row.append((self.end[0] - self.start[0] + 1 - distParallelLine(i, j)) * 20)
-            edge_weight_section.append(row)
-        mat = np.matrix(edge_weight_section)
-        np.savetxt('edge_weight_section.txt', mat, fmt='%d')
-        set_section = []
-        for i in range(1, int(len(edge_weight_section) / 2) + 1):
+            self.cost.append(row)
+        for i in range(1, int(len(self.cost) / 2) + 1):
             row = [i, 2 * i - 1, 2 * i, -1]
-            set_section.append(row)
-            # print(set_section)
-        mat = np.matrix(set_section)
-        np.savetxt('set_section.txt', mat, fmt='%d')
+            self.section.append(row)
+            # print(self.section)
         # for i in self.transition_segements:
         #     gtsp.append(i)
         #     gtsp.append([i[-1], i[0]])
@@ -390,6 +387,33 @@ class Grid:
                     movement.append([0] * len(self.squares))
             row[i] = 0
         # print(len(movement))
+
+    def createGTSPFile(self):
+        dimension = len(self.cost)
+        sets = len(self.section)
+        f = open("OCPPP"+str(dimension)+".gtsp", "a")
+        f.write("NAME : OCPPP"+str(dimension)+".gtsp\n")
+        f.write("TYPE : AGTSP\n")
+        f.write("COMMENT : "+str(dimension)+" node\n")
+        f.write("DIMENSION : "+str(dimension)+"\n")
+        f.write("GTSP_SETS : "+str(sets)+"\n")
+        f.write("EDGE_WEIGHT_TYPE : EXPLICIT\n")
+        f.write("EDGE_WEIGHT_FORMAT : FULL_MATRIX\n")
+        f.write("EDGE_WEIGHT_SECTION\n")
+        for i in self.cost:
+            row = ""
+            for j in i:
+                row = row + str(j) + " "
+            f.write(row+"\n")
+        f.write("\n")
+        f.write("\n")
+        f.write("GTSP_SET_SECTION\n")
+        for i in self.section:
+            row = ""
+            for j in i:
+                row = row + str(j) + " "
+            f.write(row+"\n")
+        f.write("EOF")
 
 
 class Square:
