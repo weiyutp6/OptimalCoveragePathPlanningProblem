@@ -452,6 +452,7 @@ elif mode == 1:
         g.findTSPCost()
         g.exportTSPCost()
         g.createGTSPSet(print_seq=print_seq)
+        g.createGTSPFile()
     g.plotCsv()
 elif mode == 2:
     g.plotGTSP()
