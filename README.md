@@ -114,35 +114,16 @@ Go back to OCPPP.py and change mode = 1, activate_tsp = 1
 python OCPPP.py
 ```
 
-You would get the files
+You would get the file OCPPP(number).gtsp and copy to GLKH-1.1/GTSPLIB run GLKH
 
 ```bash
-edge_weight_section.txt
-set_section.txt
-```
-
-These files would be used to create the .gtsp file for GLKH. a template .gtsp used is OCPPP3.gtsp.
-
-Open .gtsp file with text editor
-
-Change the tags accordingly. The important ones are replace content under EDGE_WEIGHT_SECTION tag with the contents from edge_weight_section.txt and replace GTSP_SET_SECTION tag contents with content from set_section.txt.
-
-Then change the DIMENSION and GTSP_SETS to match that of GTSP_SET_SECTION.
-
-Don't forget to change the NAME tag to the filename of the .gtsp file.
-
-(I know this is very annoying and I promise I will include code to do this automatically on the next update QwQ)
-
-After the .gtsp file is saved copy to GLKH-1.1/GTSPLIB run GLKH
-
-```bash
-cp (filename).gtsp GLKH-1.1/GTSPLIB
+cp (filename).gtsp GLKH-1.1/GTSPLIB/
 cd GLKH-1.1
 # note don't add .gtsp at the end for run GLKH
 ./runGLKH (filename)
 ```
 
-Your results should be saved in the following format
+Your results should be saved in the following format under the folder GLKH-1.1
 
 ```bash
 (filename).(optimal cost).tour
