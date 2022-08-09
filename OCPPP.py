@@ -441,7 +441,7 @@ if __name__ == "__main__":
     parser.add_argument("--csvFile")
     args = parser.parse_args()
 
-    csv_file = "20220728DredgerMap_Gaussain_2.csv"
+    csv_file = ""
     mode = 0
     activate_tsp = 0
     print_seq = 0
@@ -461,7 +461,8 @@ if __name__ == "__main__":
     unpassable10 = param["unpassable"]
 
     g = Grid(start=start10, end=end10, unpassable=unpassable10, threshold=param["threshold"])
-    # g = Grid(csv_file=csv_file, threshold=0)
+    if csv_file:
+        g = Grid(csv_file=csv_file, threshold=0)
     g.findNAI()
     if not mode:
         g.exportNAI()
