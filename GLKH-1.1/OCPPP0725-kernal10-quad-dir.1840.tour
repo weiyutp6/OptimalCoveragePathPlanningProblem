@@ -1,0 +1,18 @@
+NAME : OCPPP0725-kernal10-quad-dir.gtsp.1840.tour
+COMMENT : Length = 1840
+COMMENT : Found by GLKH [Keld Helsgaun] Thu Aug  4 17:43:35 2022
+TYPE : TOUR
+DIMENSION : 10
+TOUR_SECTION
+2
+11
+4
+15
+8
+17
+10
+19
+6
+13
+-1
+EOF

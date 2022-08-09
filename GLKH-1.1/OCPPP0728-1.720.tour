@@ -1,0 +1,15 @@
+NAME : OCPPP0728-1.gtsp.720.tour
+COMMENT : Length = 720
+COMMENT : Found by GLKH [Keld Helsgaun] Tue Aug  2 22:12:46 2022
+TYPE : TOUR
+DIMENSION : 7
+TOUR_SECTION
+2
+12
+4
+13
+8
+5
+9
+-1
+EOF

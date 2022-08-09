@@ -1,0 +1,16 @@
+NAME : OCPPP0728-2-quad-dir.gtsp.2060.tour
+COMMENT : Length = 2060
+COMMENT : Found by GLKH [Keld Helsgaun] Thu Aug  4 17:41:49 2022
+TYPE : TOUR
+DIMENSION : 8
+TOUR_SECTION
+2
+11
+6
+15
+8
+13
+4
+9
+-1
+EOF

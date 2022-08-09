@@ -30,6 +30,8 @@ import numpy as np
 from scipy.io import savemat
 import matplotlib.pyplot as plt
 import pandas as pd
+import argparse
+import yaml
 
 
 def manhattan(a, b):
@@ -272,7 +274,7 @@ class Grid:
             plt.scatter(i[1], i[0], color='b')
         plt.savefig('GTSP.png')
 
-    def createGTSPSet(self, print_seq=0):
+    def createGTSPSet(self):
         gtsp = []
         output = dict()
         counter = 0
@@ -291,21 +293,6 @@ class Grid:
             # print(gtsp[-2])
             # print(output)
         savemat('line_segment.mat', output)
-        if print_seq:
-            with open('GLKH-1.1/OCPPP3.69999.tour') as f:
-                lines = f.readlines()
-                activation = 0
-                seq = []
-                for i in lines:
-                    if activation:
-                        if i != "EOF\n":
-                            seq.append(int(i))
-                    if i == "TOUR_SECTION\n":
-                        activation = 1
-                        # print(len(i))
-                seq.pop(-1)
-                for i in seq:
-                    print(gtsp[i - 1])
         self.cost = []
         for i in gtsp:
             row = []
@@ -388,15 +375,15 @@ class Grid:
             row[i] = 0
         # print(len(movement))
 
-    def createGTSPFile(self):
+    def createGTSPFile(self, name):
         dimension = len(self.cost)
         sets = len(self.section)
-        f = open("OCPPP"+str(dimension)+".gtsp", "a")
-        f.write("NAME : OCPPP"+str(dimension)+".gtsp\n")
+        f = open("GLKH-1.1/GTSPLIB/" + name + ".gtsp", "w+")
+        f.write("NAME : " + name + ".gtsp\n")
         f.write("TYPE : AGTSP\n")
-        f.write("COMMENT : "+str(dimension)+" node\n")
-        f.write("DIMENSION : "+str(dimension)+"\n")
-        f.write("GTSP_SETS : "+str(sets)+"\n")
+        f.write("COMMENT : " + str(dimension) + " node\n")
+        f.write("DIMENSION : " + str(dimension) + "\n")
+        f.write("GTSP_SETS : " + str(sets) + "\n")
         f.write("EDGE_WEIGHT_TYPE : EXPLICIT\n")
         f.write("EDGE_WEIGHT_FORMAT : FULL_MATRIX\n")
         f.write("EDGE_WEIGHT_SECTION\n")
@@ -404,7 +391,7 @@ class Grid:
             row = ""
             for j in i:
                 row = row + str(j) + " "
-            f.write(row+"\n")
+            f.write(row + "\n")
         f.write("\n")
         f.write("\n")
         f.write("GTSP_SET_SECTION\n")
@@ -412,8 +399,24 @@ class Grid:
             row = ""
             for j in i:
                 row = row + str(j) + " "
-            f.write(row+"\n")
+            f.write(row + "\n")
         f.write("EOF")
+
+    def printSeq(self, tour=""):
+        with open(tour) as f:
+            lines = f.readlines()
+            activation = 0
+            seq = []
+            for i in lines:
+                if activation:
+                    if i != "EOF\n":
+                        seq.append(int(i))
+                if i == "TOUR_SECTION\n":
+                    activation = 1
+                    # print(len(i))
+            seq.pop(-1)
+            for i in seq:
+                print(self.gtsp_set[i - 1])
 
 
 class Square:
@@ -430,29 +433,50 @@ class Square:
             self.right = [self.coord[0], self.coord[1] + 1]
 
 
-start10 = [0, 0]
-end10 = [9, 9]
-unpassable10 = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
-# unpassable = [[5, 7], [5, 8], [6, 7], [6, 8]]
-csv_file = "20220728DredgerMap_Gaussain_2.csv"
-mode = 1
-activate_tsp = 0
-print_seq = 0
-g = Grid(start=start10, end=end10, unpassable=unpassable10, threshold=0)
-# g = Grid(csv_file=csv_file, threshold=0)
-g.findNAI()
-if not mode:
-    g.exportNAI()
-elif mode == 1:
-    g.readCsv('xh.csv')
-    g.parseLines()
-    g.possibleTransitions()
-    g.createMovementMatrix()
-    if activate_tsp:
-        g.findTSPCost()
-        g.exportTSPCost()
-        g.createGTSPSet(print_seq=print_seq)
-        g.createGTSPFile()
-    g.plotCsv()
-elif mode == 2:
-    g.plotGTSP()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--mode")
+    parser.add_argument("--activateTSP")
+    parser.add_argument("--printSeq")
+    parser.add_argument("--csvFile")
+    args = parser.parse_args()
+
+    csv_file = "20220728DredgerMap_Gaussain_2.csv"
+    mode = 0
+    activate_tsp = 0
+    print_seq = 0
+    if args.mode:
+        mode = args.mode
+    if args.activateTSP:
+        activate_tsp = args.activateTSP
+    if args.printSeq:
+        print_seq = args.printSeq
+    if args.csvFile:
+        csv_file = args.csvFile
+
+    with open('param.yaml', 'r') as file:
+        param = yaml.safe_load(file)
+    start10 = param["start"]
+    end10 = param["end"]
+    unpassable10 = param["unpassable"]
+
+    g = Grid(start=start10, end=end10, unpassable=unpassable10, threshold=param["threshold"])
+    # g = Grid(csv_file=csv_file, threshold=0)
+    g.findNAI()
+    if not mode:
+        g.exportNAI()
+    elif mode == 1:
+        g.readCsv('xh.csv')
+        g.parseLines()
+        g.possibleTransitions()
+        g.createMovementMatrix()
+        if activate_tsp:
+            g.findTSPCost()
+            g.exportTSPCost()
+            g.createGTSPSet()
+            if print_seq:
+                g.printSeq("GLKH-1.1/OCPPP6.1080.tour")
+            g.createGTSPFile(csv_file.replace(".csv", ""))
+        g.plotCsv()
+    elif mode == 2:
+        g.plotGTSP()
