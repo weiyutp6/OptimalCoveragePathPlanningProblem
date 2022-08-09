@@ -82,6 +82,7 @@ python OCPPP.py
 ```
 
 ### Run with Ramesh et al. configurations
+
 <!---
 Go to the bottom of OCPPP.py
 
@@ -123,10 +124,47 @@ cd GLKH-1.1
 ```
 --->
 
+
+you can run with a specific csv file with
+
+```bash
+bash OCPPP.sh $(csv file)
+```
+
+Or you can manually designate the workspace(start, end) and non-convexities(unpassable) in param.yaml and run
+
+```bash
+bash OCPPP.sh
+```
+
 Your results should be saved in the following format under the folder GLKH-1.1
 
 ```bash
-(filename).(optimal cost).tour
+(csv file name without .csv).(optimal cost).tour
+```
+
+To compile the results the file
+
+```bash
+line_segment.mat
+```
+
+Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
+
+Then you can find the resulting trajectory when you match the results together.
+
+### run our circular trajectory for the Oyster Project
+
+This only accepts a .csv file input. Before running the program you can designate the number of oyster you deem worthy of collecting from each square in param.yaml threshold parameter
+
+```bash
+bash NewApproach.sh $(csv file)
+```
+
+Your results should be saved in the following format under the folder GLKH-1.1
+
+```bash
+(csv file name without .csv).(optimal cost).tour
 ```
 
 To compile the results the file
