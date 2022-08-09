@@ -29,7 +29,6 @@ All code from folder GLKH-1.1 is not original. Everything is based on http://web
 If you are running this on Windows OS mingw compiler is tested and doesn't work. GLKH is ported to this version of gcc with cygwin 3.3.5 and is primarily tested and run on this version.
 
 ## Code workings
-
 ### Run unfinished GTSP version
 
 Go to the bottom of OCPPP.py
@@ -83,7 +82,7 @@ python OCPPP.py
 ```
 
 ### Run with Ramesh et al. configurations
-
+<!---
 Go to the bottom of OCPPP.py
 
 Change desired start, end and unpassable areas or read a .csv file which is a heat map.
@@ -122,6 +121,7 @@ cd GLKH-1.1
 # note don't add .gtsp at the end for run GLKH
 ./runGLKH (filename)
 ```
+--->
 
 Your results should be saved in the following format under the folder GLKH-1.1
 
