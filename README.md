@@ -29,6 +29,31 @@ All code from folder GLKH-1.1 is not original. Everything is based on http://web
 If you are running this on Windows OS mingw compiler is tested and doesn't work. GLKH is ported to this version of gcc with cygwin 3.3.5 and is primarily tested and run on this version.
 
 ## Code workings
+
+### Run semi-circular trajectory for the Oyster Project
+
+This only accepts a .csv file input. Before running the program you can designate the number of oyster you deem worthy of collecting from each square in param.yaml threshold parameter
+
+```bash
+bash NewApproach.sh $(csv file)
+```
+
+Your results should be saved in the following format under the folder GLKH-1.1
+
+```bash
+(csv file name without .csv).(optimal cost).tour
+```
+
+To compile the results the file
+
+```bash
+line_segment.mat
+```
+
+Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
+
+Then you can find the resulting trajectory when you match the results together.
+
 ### Run unfinished GTSP version
 
 Go to the bottom of OCPPP.py
@@ -135,30 +160,6 @@ Or you can manually designate the workspace(start, end) and non-convexities(unpa
 
 ```bash
 bash OCPPP.sh
-```
-
-Your results should be saved in the following format under the folder GLKH-1.1
-
-```bash
-(csv file name without .csv).(optimal cost).tour
-```
-
-To compile the results the file
-
-```bash
-line_segment.mat
-```
-
-Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
-
-Then you can find the resulting trajectory when you match the results together.
-
-### Run semi-circular trajectory for the Oyster Project
-
-This only accepts a .csv file input. Before running the program you can designate the number of oyster you deem worthy of collecting from each square in param.yaml threshold parameter
-
-```bash
-bash NewApproach.sh $(csv file)
 ```
 
 Your results should be saved in the following format under the folder GLKH-1.1
