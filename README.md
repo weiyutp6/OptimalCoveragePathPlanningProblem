@@ -49,7 +49,7 @@ python OCPPP.py
 Go to Matlab command line and the main repository directory
 
 ```bash
-OCPPP
+matlab -nodisplay -nodesktop -r "run OCPPP.m"
 ```
 
 The following xh.csv would be the results of line segmentation of the workspace
@@ -64,7 +64,7 @@ Creates the transition segments and relative cost for GTSP and plots the line se
 Go to Matlab again
 
 ```bash
-GTSP
+matlab -nodisplay -nodesktop -r "run GTSP.m"
 ```
 The following GTSP_result.csv would be the results of GTSP w.r.t the line segments and transition segments
 
@@ -104,7 +104,7 @@ python OCPPP.py
 Go to Matlab command line and the main repository directory
 
 ```bash
-OCPPP
+matlab -nodisplay -nodesktop -r "run OCPPP.m"
 ```
 
 The following xh.csv would be the results of line segmentation of the workspace
