@@ -14,11 +14,11 @@ pip3 install -r requirements.txt
 
 R2021a
 
-Optimization Toolbox(https://www.mathworks.com/help/optim/)
+Optimization Toolbox (https://www.mathworks.com/help/optim/)
 
 ### GNU C
 
-gcc 11.3.0
+gcc 11.3.0 (https://gcc.gnu.org/gcc-11/)
 
 **Disclaimer**:
 
