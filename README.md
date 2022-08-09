@@ -26,7 +26,7 @@ All code from folder GLKH-1.1 is not original. Everything is based on http://web
 
 **Note**:
 
-If you are running this on Windows OS mingw compiler is tested and doesn't work. GLKH is ported to this version of gcc with cygwin 3.3.5 and is primarily tested and run on this version.
+If you are running this on Windows OS mingw compiler is tested and doesn't work. GLKH is ported to this version of gcc with cygwin 3.3.5 (https://www.cygwin.com/) and is primarily tested and run on this version.
 
 ## Code workings
 
