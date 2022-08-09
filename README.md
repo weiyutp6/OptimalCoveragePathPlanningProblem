@@ -153,7 +153,7 @@ Contains a dictionary with the set number defined in GLKH to the line segment an
 
 Then you can find the resulting trajectory when you match the results together.
 
-### run our circular trajectory for the Oyster Project
+### Run semi-circular trajectory for the Oyster Project
 
 This only accepts a .csv file input. Before running the program you can designate the number of oyster you deem worthy of collecting from each square in param.yaml threshold parameter
 
