@@ -1,0 +1,17 @@
+NAME : 20220725DredgerMap_Gaussain_1_kernal10.gtsp.1890.tour
+COMMENT : Length = 1890
+COMMENT : Found by GLKH [Keld Helsgaun] Thu Aug 11 15:08:46 2022
+TYPE : TOUR
+DIMENSION : 9
+TOUR_SECTION
+1
+12
+3
+14
+5
+16
+7
+17
+10
+-1
+EOF

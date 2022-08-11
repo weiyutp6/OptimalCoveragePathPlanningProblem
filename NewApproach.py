@@ -37,7 +37,7 @@ class SingleDir(Grid):
             for j in range(self.start[1] + 1, self.end[1] + 1):
                 if [i, j] not in self.unpassable:
                     line.append([i, j])
-                elif line and [i, j] in self.unpassable:
+                elif line:
                     if [i, j] in self.unpassable or j == self.end[1]:
                         full_lines.append(line)
                         line = []
