@@ -375,11 +375,12 @@ class Grid:
             row[i] = 0
         # print(len(movement))
 
-    def createGTSPFile(self, name):
+    def createGTSPFile(self, output_file):
         dimension = len(self.cost)
         sets = len(self.section)
+        name = self.csv_file.replace(".csv", "")
         f = open("GLKH-1.1/GTSPLIB/" + name + ".gtsp", "w+")
-        f.write("NAME : " + name + ".gtsp\n")
+        f.write("NAME : " + output_file + ".gtsp\n")
         f.write("TYPE : AGTSP\n")
         f.write("COMMENT : " + str(dimension) + " node\n")
         f.write("DIMENSION : " + str(dimension) + "\n")

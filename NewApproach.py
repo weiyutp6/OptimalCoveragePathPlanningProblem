@@ -48,7 +48,7 @@ class SingleDir(Grid):
         #     print(i)
 
     def costFunc(self, i, j):
-        row_cost = (rowDist(self.start, self.end) - rowDist(i[1], j[0])) ** 2 * 10
+        row_cost = (rowDist(self.start, self.end) - rowDist(i[1], j[0]))  * 10
         column_cost = 10 * lineDirection(i, j)
         return row_cost + column_cost
 
@@ -96,6 +96,6 @@ if __name__ == "__main__":
     obj = SingleDir(csv_file=csvFile, threshold=param["threshold"])
     obj.createLineSegment()
     obj.defineGTSPCost()
-    obj.createGTSPFile(csvFile.replace(".csv", ""))
+    obj.createGTSPFile(csvFile.replace(".csv", "") + "linear")
     if printSeq:
-        obj.printSeq("GLKH-1.1/" + csvFile + ".*.tour")
+        obj.printSeq("GLKH-1.1/" + "linear" + csvFile + ".*.tour")
