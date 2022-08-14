@@ -1,4 +1,6 @@
 import argparse
+
+import numpy as np
 import yaml
 
 from scipy.io import savemat
@@ -23,9 +25,15 @@ def lineDirection(a, b):
         return 0
 
 
+def euclidean(a, b):
+    return np.sqrt((b[0]-a[0])**2 + (b[1]-a[1])**2)
+
+
 class SingleDir(Grid):
-    def __init__(self, start=[], end=[], unpassable=[], csv_file=None, threshold=0):
-        super().__init__(start, end, unpassable, csv_file, threshold)
+    def __init__(self, param, csv_file=None):
+        self.param = param
+        super().__init__(self.param["start"], self.param["end"], self.param["unpassable"], csv_file,
+                         self.param["threshold"])
         self.h_lines = []
         self.cost = []
         self.section = []
@@ -48,8 +56,10 @@ class SingleDir(Grid):
         #     print(i)
 
     def costFunc(self, i, j):
-        row_cost = (rowDist(self.start, self.end) - rowDist(i[1], j[0]))  * 10
-        column_cost = 10 * lineDirection(i, j)
+        row_cost = (rowDist(self.start, self.end) - rowDist(i[1], j[0])) ** 2 \
+            * (self.param["weights"]["row_quad"] + self.param["weights"]["turning_speed_dec"])
+        column_cost = self.param["weights"]["direction"] * lineDirection(i, j)
+        transaction_cost = euclidean(i[1], j[0]) * self.param["weights"]["transaction_length"]
         return row_cost + column_cost
 
     def defineGTSPCost(self):
@@ -93,9 +103,12 @@ if __name__ == "__main__":
     with open('param.yaml', 'r') as file:
         param = yaml.safe_load(file)
 
-    obj = SingleDir(csv_file=csvFile, threshold=param["threshold"])
+    obj = SingleDir(csv_file=csvFile, param=param)
     obj.createLineSegment()
     obj.defineGTSPCost()
-    obj.createGTSPFile(csvFile.replace(".csv", "") + "linear")
+    cost_composition = "quadratic_dir_transaction"
+    obj.createGTSPFile(csvFile.replace(".csv", ""))
+    # obj.createGTSPFile(csvFile.replace(".csv", "") + "quadratic_dir_transaction")
     if printSeq:
-        obj.printSeq("GLKH-1.1/" + "linear" + csvFile + ".*.tour")
+        obj.printSeq("GLKH-1.1/" + csvFile + ".*.tour")
+        # obj.printSeq("GLKH-1.1/" + "quadratic_dir_transaction" + csvFile + ".*.tour")

@@ -6,3 +6,12 @@ end:
   [9, 9]
 unpassable:
   [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6, 7], [6, 8]]
+weights:
+  transaction_length:
+    1
+  turning_speed_dec:
+    10
+  row_quad:
+    10
+  direction:
+    10
