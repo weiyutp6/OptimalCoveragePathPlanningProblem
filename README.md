@@ -20,9 +20,8 @@ Optimization Toolbox (https://www.mathworks.com/help/optim/)
 
 gcc 11.3.0 (https://gcc.gnu.org/gcc-11/)
 
-**Disclaimer**:
-
-All code from folder GLKH-1.1 is not original. Everything is based on http://webhotel4.ruc.dk/~keld/research/GLKH/ with only changes being compatibility changes in the original code and the compiled .exe files to run on the current setup. If you want to use the original GLKH follow the download instructions on the website and replace GLKH-1.1 with the compiled folder.
+### GLKH
+Go to http://webhotel4.ruc.dk/~keld/research/GLKH/ and follow the download instruction. Copy the resulting folder GLKH-1.1 to base of the repository.
 
 **Note**:
 
