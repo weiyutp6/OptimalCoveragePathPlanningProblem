@@ -52,7 +52,7 @@ line_segment.mat
 Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
 
 Then you can find the resulting trajectory when you match the results together.
-
+<!---
 ### Run unfinished GTSP version
 
 Go to the bottom of OCPPP.py
@@ -104,7 +104,7 @@ Change mode = 2
 ```bash
 python OCPPP.py
 ```
-
+-->
 ### Run with Ramesh et al. configurations
 
 <!---
@@ -185,11 +185,11 @@ unpassable = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6
 ![](segment.png)
 
 Fig.1 result of workspace segmentation(red lines) and transition segments(yellow lines)
-
+<!---
 ![](GTSP.png)
 
 Fig.2 result of GTSP (unfinished version)
-
+-->
 ## Reference:
 [1] Stanislav Bochkarev and Stephen L. Smith. On minimizing turns in robot coverage path planning. 2016 IEEE International Conference on Automation Science and Engineering (CASE), pp. 1237–1242, 2016.
 
