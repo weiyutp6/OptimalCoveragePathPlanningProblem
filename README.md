@@ -20,9 +20,8 @@ Optimization Toolbox (https://www.mathworks.com/help/optim/)
 
 gcc 11.3.0 (https://gcc.gnu.org/gcc-11/)
 
-**Disclaimer**:
-
-All code from folder GLKH-1.1 is not original. Everything is based on http://webhotel4.ruc.dk/~keld/research/GLKH/ with only changes being compatibility changes in the original code and the compiled .exe files to run on the current setup. If you want to use the original GLKH follow the download instructions on the website and replace GLKH-1.1 with the compiled folder.
+### GLKH
+Go to http://webhotel4.ruc.dk/~keld/research/GLKH/ and follow the download instruction. Copy the resulting folder GLKH-1.1 to base of the repository.
 
 **Note**:
 
@@ -53,7 +52,7 @@ line_segment.mat
 Contains a dictionary with the set number defined in GLKH to the line segment and direction with the set number as the key and line segment as the value.
 
 Then you can find the resulting trajectory when you match the results together.
-
+<!---
 ### Run unfinished GTSP version
 
 Go to the bottom of OCPPP.py
@@ -105,7 +104,7 @@ Change mode = 2
 ```bash
 python OCPPP.py
 ```
-
+-->
 ### Run with Ramesh et al. configurations
 
 <!---
@@ -186,11 +185,11 @@ unpassable = [[1, 4], [2, 4], [3, 4], [1, 5], [2, 5], [3, 5], [5, 7], [5, 8], [6
 ![](segment.png)
 
 Fig.1 result of workspace segmentation(red lines) and transition segments(yellow lines)
-
+<!---
 ![](GTSP.png)
 
 Fig.2 result of GTSP (unfinished version)
-
+-->
 ## Reference:
 [1] Stanislav Bochkarev and Stephen L. Smith. On minimizing turns in robot coverage path planning. 2016 IEEE International Conference on Automation Science and Engineering (CASE), pp. 1237–1242, 2016.
 
