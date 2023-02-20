@@ -1,0 +1,8 @@
+%% calculate Nomoto model path from 2 line segments
+lineseg1 = [0,0;0,18];
+lineseg2 = [1,0;1,19];
+% assume each 90deg turn goes forward 1 advance forward and 1/2
+% tactical_rad sideways
+advance = 2;
+tactical_rad = 2;
+linseg
