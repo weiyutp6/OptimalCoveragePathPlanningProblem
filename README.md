@@ -1,5 +1,18 @@
 # Optimal Coverage Path Planning Problem for Marine Environments
 
+Plans a path that covers a non-convex workspace (a grid with obstacles) while minimizing the number of turns. Built for collecting oysters on aquaculture beds.
+
+## Approach
+
+1. **Partition** the workspace into line segments (`OCPPP.py`, `OCPPP.m`), following the minimum-turn partitioning ideas in references [1] and [2].
+2. **Model** the choice of segments and directions as a **generalized traveling salesman problem (GTSP)**. Transition costs combine length, turning and direction penalties, set in `param.yaml`.
+3. **Solve** it with the **GLKH solver** (Lin-Kernighan-Helsgaun, reference [3]).
+4. **Smooth** the path with **Dubins curves** to respect a minimum turning radius (`DubinModel.py`, `dubinPath.py`).
+
+## Skills demonstrated
+
+Combinatorial optimization (GTSP, TSP heuristics), graph modelling, path planning, Python, MATLAB, C toolchains.
+
 ## Prerequisites(tested and run on the specific versions)
 
 ### Python
